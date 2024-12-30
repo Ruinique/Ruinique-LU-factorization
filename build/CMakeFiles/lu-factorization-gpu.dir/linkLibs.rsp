@@ -1,0 +1,1 @@
+ -lcusolver -lcublas -lcublasLt -lcusparse -lcudadevrt -lcudart_static -lrt -lpthread -ldl 
