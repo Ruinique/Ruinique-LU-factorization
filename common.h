@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2024-11-21 13:01:20
  * @LastEditors: Ruinique
- * @LastEditTime: 2024-12-30 16:53:05
+ * @LastEditTime: 2025-01-02 14:18:04
  */
 /**
  * @file common.h
@@ -27,6 +27,14 @@
 #include <fstream>
 
 void init_matrix(double *A, int m, int n) {
+    for (int j = 0; j < n; j++) {
+        for (int i = 0; i < m; i++) {
+            A[j * m + i] = rand() % 10;
+        }
+    }
+}
+
+void init_matrix_float(float *A, int m, int n) {
     for (int j = 0; j < n; j++) {
         for (int i = 0; i < m; i++) {
             A[j * m + i] = rand() % 10;

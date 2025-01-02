@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2024-11-21 13:55:45
  * @LastEditors: Ruinique
- * @LastEditTime: 2024-12-30 17:00:11
+ * @LastEditTime: 2025-01-02 14:18:34
  */
 #include "common.h"
 #include "lu-factorization-with-pivoting-cuslover.h"
@@ -14,22 +14,22 @@ const int testSize[12] = {8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 
 int main() {
     // 首先调用 5 轮 size = 1024 进行 warm up
     for (int i = 0; i < 5; i++) {
-        double *matrix = new double[1024 * 1024];
-        init_matrix(matrix, 1024, 1024);
+        float *matrix = new float[1024 * 1024];
+        init_matrix_float(matrix, 1024, 1024);
         int64_t *pivot = new int64_t[1024];
-        call_cusolver_to_lu_factorization_double(matrix, 1024, 1024, 1024, pivot);
+        call_cusolver_to_lu_factorization_float(matrix, 1024, 1024, 1024, pivot);
         delete[] matrix;
         delete[] pivot;
     }
     float time[12];
     for (int i = 0; i < 12; i++) {
         int size = testSize[i];
-        double *matrix = new double[size * size];
-        init_matrix(matrix, size, size);
+        float *matrix = new float[size * size];
+        init_matrix_float(matrix, size, size);
         int64_t *pivot = new int64_t[size];
         time[i] = 0;
         for (int j = 0; j < 5; j++) {
-            time[i] += call_cusolver_to_lu_factorization_double(matrix, size, size, size, pivot);
+            time[i] += call_cusolver_to_lu_factorization_float(matrix, size, size, size, pivot);
         }
         time[i] /= 5;
         delete[] matrix;
