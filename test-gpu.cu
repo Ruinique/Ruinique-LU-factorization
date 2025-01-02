@@ -4,12 +4,12 @@
  * @version: 
  * @Date: 2024-11-21 13:55:45
  * @LastEditors: Ruinique
- * @LastEditTime: 2025-01-02 14:21:50
+ * @LastEditTime: 2025-01-02 14:37:29
  */
 #include "common.h"
 #include "lu-factorization-with-pivoting-cuslover.h"
 
-const int testSize[16] = {8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144};
+const int testSize[13] = {8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768};
 
 int main() {
     // 首先调用 5 轮 size = 1024 进行 warm up
@@ -21,8 +21,8 @@ int main() {
         delete[] matrix;
         delete[] pivot;
     }
-    float time[16];
-    for (int i = 0; i < 16; i++) {
+    float time[13];
+    for (int i = 0; i < 13; i++) {
         int size = testSize[i];
         float *matrix = new float[size * size];
         init_matrix_float(matrix, size, size);
@@ -35,13 +35,13 @@ int main() {
         delete[] matrix;
         delete[] pivot;
     }
-    for (int i = 0; i < 16; i++) {
+    for (int i = 0; i < 13; i++) {
         printf("Time for %d x %d matrix: %f\n", testSize[i], testSize[i], time[i]);
     }
     // 将结果写入 CSV 文件
     std::ofstream csv_file("lu_factorization_times.csv");
     csv_file << "Matrix Size,Time (ms)\n";
-    for (int i = 0; i < 16; i++) {
+    for (int i = 0; i < 13; i++) {
         csv_file << testSize[i] << "x" << testSize[i] << "," << time[i] << "\n";
     }
     csv_file.close();
