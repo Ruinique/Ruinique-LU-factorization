@@ -9,6 +9,8 @@
 #include "common.h"
 #include "lu-factorization-with-pivoting-cuslover.h"
 
+size_t calculate_memory_usage(int64_t m, int64_t n, int64_t lda);
+
 const int testSize[13] = {8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768};
 
 int main() {
