@@ -91,8 +91,8 @@ float call_cusolver_to_lu_factorization_float(float *matrix, int64_t m,
                                               int64_t n, int64_t lda,
                                               int64_t *pivot) {
     float *A_gpu;
-    cudaMalloc((void **)&A_gpu, m * n * sizeof(double));
-    cudaMemcpy(A_gpu, matrix, m * n * sizeof(double), cudaMemcpyHostToDevice);
+    cudaMalloc((void **)&A_gpu, m * n * sizeof(float));
+    cudaMemcpy(A_gpu, matrix, m * n * sizeof(float), cudaMemcpyHostToDevice);
     // create cusolver handle
     cusolverDnHandle_t cusolver_lu_factorization_handler;
     cusolverDnCreate(&cusolver_lu_factorization_handler);
