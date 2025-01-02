@@ -34,9 +34,9 @@ void init_matrix(double *A, int m, int n) {
     }
 }
 
-void init_matrix_float(float *A, int m, int n) {
-    for (int j = 0; j < n; j++) {
-        for (int i = 0; i < m; i++) {
+void init_matrix_float(float *A, size_t m, size_t n) {
+    for (size_t j = 0; j < n; j++) {
+        for (size_t i = 0; i < m; i++) {
             A[j * m + i] = rand() % 10;
         }
     }
