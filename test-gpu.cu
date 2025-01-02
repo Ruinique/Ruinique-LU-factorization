@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2024-11-21 13:55:45
  * @LastEditors: Ruinique
- * @LastEditTime: 2025-01-02 15:21:18
+ * @LastEditTime: 2025-01-02 15:24:32
  */
 #include "common.h"
 #include "lu-factorization-with-pivoting-cuslover.h"
@@ -25,7 +25,7 @@ int main() {
     }
     float time[14];
     size_t memory[14];
-    for (int i = 0; i < 13; i++) {
+    for (int i = 0; i < 14; i++) {
         int size = testSize[i];
         size_t memory_usage = calculate_memory_usage(size, size, size);
         memory[i] = memory_usage;
