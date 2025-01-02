@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2024-11-21 13:47:46
  * @LastEditors: Ruinique
- * @LastEditTime: 2025-01-02 14:20:07
+ * @LastEditTime: 2025-01-02 14:35:41
  */
 /**
  * @file lu-factorazation-with-pivoting-cuslover.h
@@ -124,7 +124,7 @@ float call_cusolver_to_lu_factorization_float(float *matrix, int64_t m,
                          host_working_buffer, host_working_buffer_size,
                          info_lu_factorazation_gpu);
     });
-    printf("cusolverDnXgetrf time: %f ms\n", time);
+    printf("%d * %d matrix : cusolverDnXgetrf time: %f ms\n", m, n, time);
     // check res
     int info_lu_factorazation_cpu = 0;
     cudaMemcpy(&info_lu_factorazation_cpu, info_lu_factorazation_gpu,
