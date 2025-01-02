@@ -15,7 +15,7 @@ def compute_theoretical_time(n, tfps):
 df = pd.read_csv('lu_factorization_times.csv')
 
 # 假设你使用的 GPU 性能是 170 TFLOPS（NVIDIA RTX 4090D）
-gpu_tfops = 170  # 单精度浮点运算性能 (TFLOPS)
+gpu_tfops = 73.54  # 单精度浮点运算性能 (TFLOPS)
 
 # 提取矩阵大小的整数部分
 df['Matrix Size'] = df['Matrix Size'].apply(lambda x: int(x.split('x')[0]))
