@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2024-11-21 13:47:46
  * @LastEditors: Ruinique
- * @LastEditTime: 2025-01-02 14:35:41
+ * @LastEditTime: 2025-01-02 14:53:50
  */
 /**
  * @file lu-factorazation-with-pivoting-cuslover.h
@@ -116,14 +116,24 @@ float call_cusolver_to_lu_factorization_float(float *matrix, int64_t m,
     int64_t *pivot_gpu;
     cudaMalloc((void **)&pivot_gpu, std::min(m, n) * sizeof(int64_t));
     Ruinique_CUDA_Timer<std::function<void()>> timer;
-    float time = timer.time_function([&]() {
+    // float time = timer.time_function([&]() {
+    cudaEvent_t start, stop;
+    cudaEventCreate(&start);
+    cudaEventCreate(&stop);
+    cudaEventRecord(start, 0);
         // call cusolver
         cusolverDnXgetrf(cusolver_lu_factorization_handler, nullptr, m, n,
                          CUDA_R_32F, matrix_gpu, lda, pivot_gpu, CUDA_R_32F,
                          device_working_buffer, device_working_buffer_size,
                          host_working_buffer, host_working_buffer_size,
                          info_lu_factorazation_gpu);
-    });
+    // });
+    cudaEventRecord(stop, 0);
+    cudaEventSynchronize(stop);
+    float time;
+    cudaEventElapsedTime(&time, start, stop);
+    cudaEventDestroy(start);
+    cudaEventDestroy(stop);
     printf("%d * %d matrix : cusolverDnXgetrf time: %f ms\n", m, n, time);
     // check res
     int info_lu_factorazation_cpu = 0;
