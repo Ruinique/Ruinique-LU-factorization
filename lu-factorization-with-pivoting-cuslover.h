@@ -4,7 +4,7 @@
  * @version: 
  * @Date: 2024-11-21 13:47:46
  * @LastEditors: Ruinique
- * @LastEditTime: 2024-12-30 16:45:47
+ * @LastEditTime: 2025-01-02 14:20:07
  */
 /**
  * @file lu-factorazation-with-pivoting-cuslover.h
@@ -119,7 +119,7 @@ float call_cusolver_to_lu_factorization_float(float *matrix, int64_t m,
     float time = timer.time_function([&]() {
         // call cusolver
         cusolverDnXgetrf(cusolver_lu_factorization_handler, nullptr, m, n,
-                         CUDA_R_64F, matrix_gpu, lda, pivot_gpu, CUDA_R_64F,
+                         CUDA_R_32F, matrix_gpu, lda, pivot_gpu, CUDA_R_32F,
                          device_working_buffer, device_working_buffer_size,
                          host_working_buffer, host_working_buffer_size,
                          info_lu_factorazation_gpu);

@@ -4,12 +4,12 @@
  * @version: 
  * @Date: 2024-11-21 13:55:45
  * @LastEditors: Ruinique
- * @LastEditTime: 2025-01-02 14:18:34
+ * @LastEditTime: 2025-01-02 14:20:46
  */
 #include "common.h"
 #include "lu-factorization-with-pivoting-cuslover.h"
 
-const int testSize[12] = {8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384};
+const int testSize[16] = {8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144};
 
 int main() {
     // 首先调用 5 轮 size = 1024 进行 warm up
